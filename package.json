@@ -18,6 +18,7 @@
     "@types/react-dom": "^19.1.9"
   },
   "dependencies": {
+    "@modera/ui": "file:../../../modera-ui",
     "yauzl": "^3.4.0",
     "lucide-react": "^1.17.0",
     "puppeteer-core": "25.10.0",
