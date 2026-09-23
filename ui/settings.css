@@ -1,0 +1,327 @@
+:root {
+  color-scheme: light dark;
+  --search-ink: #191b20;
+  --search-muted: #777d87;
+  --search-line: rgba(35, 40, 52, 0.1);
+  --search-card: rgba(255, 255, 255, 0.72);
+  --search-control: rgba(255, 255, 255, 0.84);
+  --search-soft: rgba(30, 38, 55, 0.055);
+  --search-accent: #3978f6;
+  --settings-primary: var(--search-accent) !important;
+  --settings-focus: var(--search-accent) !important;
+}
+body {
+  margin: 0;
+  background: transparent;
+}
+.df-settings {
+  min-height: 100%;
+  color: var(--search-ink);
+  background:
+    radial-gradient(
+      700px 270px at 78% -8%,
+      rgba(57, 120, 246, 0.075),
+      transparent 68%
+    ),
+    transparent;
+}
+.df-settings > h2 {
+  color: var(--search-ink);
+}
+.df-description,
+.df-card > p,
+.df-field > span,
+.df-muted {
+  color: var(--search-muted) !important;
+}
+.search-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 0 18px;
+  border: 1px solid var(--search-line);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--search-card), transparent);
+  box-shadow: 0 10px 34px rgba(20, 30, 50, 0.035);
+  overflow: hidden;
+}
+.search-metric {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  padding: 16px;
+}
+.search-metric + .search-metric:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  bottom: 13px;
+  width: 1px;
+  background: var(--search-line);
+}
+.search-metric svg {
+  flex: 0 0 auto;
+  color: var(--search-accent);
+}
+.search-metric span {
+  min-width: 0;
+}
+.search-metric strong,
+.search-metric small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-metric strong {
+  font-size: 13px;
+}
+.search-metric small {
+  margin-top: 2px;
+  color: var(--search-muted);
+  font-size: 11px;
+}
+.search-settings-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+.search-settings-grid .df-card {
+  height: 100%;
+  margin: 0;
+  padding: 21px 22px;
+  border-color: var(--search-line);
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    var(--search-card),
+    rgba(255, 255, 255, 0.38)
+  );
+  box-shadow: 0 9px 30px rgba(28, 37, 54, 0.035);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.search-settings-grid .df-card:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--search-accent) 20%,
+    var(--search-line)
+  );
+  box-shadow: 0 13px 36px rgba(28, 37, 54, 0.055);
+}
+.search-settings-grid .df-card h3 {
+  color: var(--search-ink);
+  font-size: 13px;
+  font-weight: 650;
+}
+.search-secondary-grid {
+  margin-top: 16px;
+}
+.search-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 17px 0;
+  padding: 12px 13px;
+  border: 1px solid var(--search-line);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--search-card) 72%, transparent);
+}
+.search-toggle-row span,
+.search-toggle-row small {
+  display: block;
+}
+.search-toggle-row small {
+  margin-top: 2px;
+  color: var(--search-muted);
+  font-size: 11px;
+}
+.search-toggle-row .df-switch {
+  width: 36px !important;
+  height: 20px !important;
+  border: 0 !important;
+  background: color-mix(
+    in srgb,
+    var(--search-accent) 18%,
+    var(--search-control)
+  );
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--search-accent) 22%, transparent) !important;
+}
+.search-toggle-row .df-switch:before {
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+}
+.search-toggle-row .df-switch:checked {
+  background: var(--search-accent);
+}
+.search-toggle-row .df-switch:checked:before {
+  transform: translateX(16px);
+}
+.df-settings input:not([type="checkbox"]):not([type="radio"]),
+.df-settings select,
+.df-settings textarea {
+  border-color: var(--search-line);
+  border-radius: 9px;
+  background: var(--search-control);
+  color: var(--search-ink);
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    background 0.18s;
+}
+.df-settings input:hover,
+.df-settings select:hover,
+.df-settings textarea:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--search-accent) 32%,
+    var(--search-line)
+  );
+}
+.df-settings input:focus,
+.df-settings select:focus,
+.df-settings textarea:focus {
+  border-color: var(--search-accent);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--search-accent) 14%, transparent);
+}
+.df-settings input:disabled {
+  opacity: 0.55;
+}
+.df-settings .df-button {
+  border-color: var(--search-line);
+  border-radius: 9px;
+  background: var(--search-control);
+  color: var(--search-ink);
+  transition:
+    background 0.18s,
+    border-color 0.18s,
+    box-shadow 0.18s,
+    transform 0.18s;
+}
+.df-settings .df-button:hover:not(:disabled) {
+  border-color: color-mix(
+    in srgb,
+    var(--search-accent) 24%,
+    var(--search-line)
+  );
+  background: color-mix(
+    in srgb,
+    var(--search-accent) 5%,
+    var(--search-control)
+  );
+  box-shadow: 0 6px 18px rgba(28, 37, 54, 0.075);
+}
+.df-settings .df-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.df-settings .df-button.primary {
+  border-color: var(--search-accent);
+  background: var(--search-accent);
+  color: #fff;
+  box-shadow: 0 7px 18px rgba(57, 120, 246, 0.18);
+}
+.search-compact-fields {
+  gap: 12px;
+}
+.search-browser-results {
+  margin-top: 10px;
+}
+.search-browser-results:empty {
+  display: none;
+}
+.search-browser-results .df-list-row {
+  background: color-mix(in srgb, var(--search-card) 76%, transparent);
+  border-color: var(--search-line);
+}
+.search-log {
+  margin-top: 12px;
+}
+.search-log > small {
+  display: block;
+  color: var(--search-muted);
+  overflow-wrap: anywhere;
+}
+.search-log pre {
+  max-height: 220px;
+  margin-bottom: 0;
+  border: 1px solid var(--search-line);
+  background: var(--search-soft);
+}
+.search-save-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 13px 14px;
+  border: 1px solid var(--search-line);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--search-card) 78%, transparent);
+  box-shadow: 0 7px 24px rgba(28, 37, 54, 0.035);
+}
+.search-save-bar span {
+  margin-right: auto;
+  color: var(--search-muted);
+  font-size: 11px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --search-ink: #ecedf0;
+    --search-muted: #9297a0;
+    --search-line: rgba(238, 241, 248, 0.1);
+    --search-card: rgba(24, 26, 30, 0.76);
+    --search-control: rgba(24, 26, 30, 0.88);
+    --search-soft: rgba(255, 255, 255, 0.065);
+  }
+  .df-settings {
+    background:
+      radial-gradient(
+        700px 270px at 78% -8%,
+        rgba(77, 137, 255, 0.1),
+        transparent 68%
+      ),
+      transparent;
+  }
+  .search-settings-grid .df-card {
+    background: linear-gradient(
+      135deg,
+      var(--search-card),
+      rgba(24, 26, 30, 0.46)
+    );
+    box-shadow: 0 12px 38px rgba(0, 0, 0, 0.12);
+  }
+}
+@media (max-width: 760px) {
+  .search-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .search-metric:nth-child(3):before {
+    display: none;
+  }
+  .search-metric:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--search-line);
+  }
+  .search-settings-grid {
+    grid-template-columns: 1fr;
+  }
+  .search-save-bar {
+    align-items: flex-start;
+  }
+  .search-save-bar span {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .df-settings * {
+    animation: none !important;
+    transition-duration: 0.001ms !important;
+  }
+}
