@@ -12,6 +12,7 @@ const schema = z.object({
 export const fetchUi: PluginUiContribution = {
   id: "modera.websearch.fetch-result",
   slot: "tool.result",
+  hostRenderer: "web-result",
   toolNames: [fetchDefinition.id],
   requiredPermissions: [],
   async render(request) {
@@ -44,29 +45,8 @@ export const fetchUi: PluginUiContribution = {
     const characterLabel = `${formattedCharacters} ${zh ? "字符" : characters === 1 ? "character" : "characters"}`;
     return {
       title: result.title || url.hostname.replace(/^www\./, ""),
-      header: false,
-      badge: characterLabel,
-      children: [
-        {
-          type: "link",
-          label: result.title || result.url,
-          url: result.url,
-          description: result.url,
-          ...(result.icon ? { icon: result.icon } : {}),
-        },
-        {
-          type: "document",
-          label: zh ? "内容预览" : "Content preview",
-          meta:
-            result.truncated || parsed.partial
-              ? `${characterLabel} · ${zh ? "内容已截断" : "Truncated"}`
-              : `${characterLabel} · ${zh ? "完整内容" : "Complete"}`,
-          expandLabel: zh ? "展开正文" : "Expand content",
-          collapseLabel: zh ? "收起正文" : "Collapse content",
-          previewText: result.text.replace(/\s+/g, " ").trim().slice(0, 1200),
-          text: result.text.slice(0, 16000),
-        },
-      ],
+      data: { kind: "document", ...result, text: result.text.slice(0, 16000), partial: !!parsed.partial, characterLabel },
+      children: [],
     };
   },
 };
