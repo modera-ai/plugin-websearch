@@ -7,11 +7,14 @@ import { fetchDefinition, fetchPage } from "./fetch";
 import { searchDefinition, searchUi } from "./search";
 import { searchWeb } from "./engines";
 import { fetchUi } from "./fetch-ui";
-let driver: BrowserDriver | undefined;
+let drivers: BrowserDriver[] = [];
 export const activate: PluginModule["activate"] = async (host) => {
   const diagnostics = new SearchDiagnostics(host.storagePath);
-  const browser = new BrowserDriver();
-  driver = browser;
+  // Each driver serializes its own isolated contexts; separate lanes allow independent reads.
+  const browsers = Array.from({ length: 4 }, () => new BrowserDriver());
+  drivers = browsers;
+  let nextBrowser = 0;
+  const selectBrowser = () => browsers[nextBrowser++ % browsers.length]!;
   return {
     settings: {
       actions: ["scanBrowsers", "readDiagnostics"],
@@ -42,7 +45,7 @@ export const activate: PluginModule["activate"] = async (host) => {
             host.signal,
             AbortSignal.timeout(options.timeoutMs),
           ]);
-          return browser
+          return selectBrowser()
             .withPage(
               options.browserPath,
               signal,
@@ -114,7 +117,7 @@ export const activate: PluginModule["activate"] = async (host) => {
             host.signal,
             AbortSignal.timeout(options.timeoutMs),
           ]);
-          return browser
+          return selectBrowser()
             .withPage(
               options.browserPath,
               signal,
@@ -149,7 +152,7 @@ export const activate: PluginModule["activate"] = async (host) => {
   };
 };
 export const deactivate: PluginModule["deactivate"] = async () => {
-  const current = driver;
-  driver = undefined;
-  await current?.close();
+  const current = drivers;
+  drivers = [];
+  await Promise.all(current.map(browser => browser.close()));
 };
