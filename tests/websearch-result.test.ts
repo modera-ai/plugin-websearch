@@ -26,14 +26,14 @@ it.each([searchUi, fetchUi])(
       );
     expect(await render()).toMatchObject({
       live: true,
-      children: [{ type: "progress", label: expect.stringContaining("正在") }],
+      data: { pending: true, message: expect.stringContaining("正在") }, children: [],
     });
     expect(
-      (await render('{"error":"connect ETIMEDOUT"}')).children,
-    ).toMatchObject([{ text: "connect ETIMEDOUT" }]);
+      (await render('{"error":"connect ETIMEDOUT"}')).data,
+    ).toMatchObject({ message: "connect ETIMEDOUT", failed: true });
     expect(
-      (await render('{"truncated":true,"preview":"partial"}')).children,
-    ).toMatchObject([{ text: expect.stringContaining("预览") }]);
+      (await render('{"truncated":true,"preview":"partial"}')).data,
+    ).toMatchObject({ message: expect.stringContaining("预览") });
     for (const raw of [
       "null",
       "[]",
@@ -42,9 +42,7 @@ it.each([searchUi, fetchUi])(
       '{"results":null}',
       '{"title":"x","url":"file:///secret","text":"secret","truncated":false}',
     ]) {
-      expect((await render(raw)).children).toMatchObject([
-        { text: expect.stringContaining("格式无法识别") },
-      ]);
+      expect((await render(raw)).data).toMatchObject({ message: expect.stringContaining("格式无法识别") });
     }
   },
 );

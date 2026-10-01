@@ -108,10 +108,7 @@ it.runIf(process.env.DF_SYSTEM_BROWSER === "1")(
           },
           { sessionId: "s", runId: "r", signal },
         );
-        expect(view.children[0]).toMatchObject({
-          type: "link",
-          url: "https://example.com/one",
-        });
+        expect(view.data).toMatchObject({ results: [{ url: "https://example.com/one" }] });
         await page.setContent(
           `<ul id="b_results"><li class="b_algo b_ad"><h2><a href="https://ads.example.com">Ad</a></h2></li><li class="b_algo"><h2><a href="https://example.com">Bing title</a></h2><div class="b_caption"><p>Summary</p></div></li></ul>`,
         );

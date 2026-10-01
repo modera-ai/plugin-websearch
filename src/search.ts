@@ -40,6 +40,7 @@ export const searchDefinition = declaredTool(manifest, "web_search");
 export const searchUi: PluginUiContribution = {
   id: "modera.websearch.search-result",
   slot: "tool.result",
+  hostRenderer: "web-result",
   toolNames: [searchDefinition.id],
   requiredPermissions: [],
   async render(request) {
@@ -75,37 +76,8 @@ export const searchUi: PluginUiContribution = {
     return {
       title: result.query,
       header: false,
-      scroll: true,
-      badge: `${result.engine} · ${result.results.length}${parsed.partial ? (zh ? " · 部分结果" : " · Partial") : ""}`,
-      children:
-        result.status === "ok"
-          ? [
-              ...(parsed.partial
-                ? [
-                    {
-                      type: "text" as const,
-                      text: zh
-                        ? "当前展示部分结果，完整内容可继续读取。"
-                        : "Partial preview; more content is available through the result reference.",
-                      tone: "muted" as const,
-                    },
-                  ]
-                : []),
-              {
-                type: "result-list" as const,
-                query: result.query,
-                queryLabel: zh ? "查询" : "Query",
-                limitLabel: `${zh ? "结果上限" : "Limit"}: ${input?.maxResults ?? 5}`,
-                countLabel: zh ? "条结果" : "results",
-                items: result.results.map((item) => ({
-                  title: item.title,
-                  url: item.url,
-                  description: item.snippet,
-                  ...(item.icon ? { icon: item.icon } : {}),
-                })),
-              },
-            ]
-          : [{ type: "text", text: statuses[result.status], tone: "muted" }],
+      data: { kind: "search", ...result, partial: !!parsed.partial, limit: input?.maxResults ?? 5, message: statuses[result.status] },
+      children: [],
     };
   },
 };

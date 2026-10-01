@@ -97,7 +97,7 @@ it("renders oversized search evidence as partial content instead of a search err
     },
     { sessionId: "s", runId: "r", signal: new AbortController().signal },
   );
-  expect(JSON.stringify(view)).toContain("部分");
+  expect(view.data).toMatchObject({ partial: true, kind: "search" });
   expect(JSON.stringify(view)).not.toContain("大小限制");
   expect(JSON.stringify(view)).toContain("example.com");
 });

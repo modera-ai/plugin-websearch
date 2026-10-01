@@ -8,6 +8,7 @@
   "category": "web",
   "icon": "globe",
   "main": "dist/index.cjs",
+  "hostRenderers": { "web-result": { "entry": "web-result.js", "root": "dist/ui" } },
   "permissions": [
     "network.fetch",
     "process.spawn"
