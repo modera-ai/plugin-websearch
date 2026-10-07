@@ -98,6 +98,7 @@
     }
   },
   "settings": {
+    "group": "connections",
     "locales": {
       "zh-CN": {
         "title": "代理和搜索引擎"
