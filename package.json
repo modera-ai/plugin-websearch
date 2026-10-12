@@ -1,6 +1,6 @@
 {
   "name": "@modera-plugin/websearch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Search DuckDuckGo/Bing and read public web pages in an isolated browser.",
   "files": [
