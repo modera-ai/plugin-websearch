@@ -1,5 +1,5 @@
 import React from "react";
-import { Search } from "lucide-react";
+import { MagnifyingGlassIcon as Search } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 import { AgentDocumentResult, AgentResultLink, AgentWebResults, ToolExecution, parseToolOutput } from "@modera/ui";
 import type { PluginToolRendererProps } from "@modera/plugin-sdk";
 type WebData = { kind?: string; pending?: boolean; message?: string; description?: string; preview?: string; query?: string; results?: Record<string, unknown>[]; engine?: string; partial?: boolean; limit?: number; url?: string; title?: string; text?: string; truncated?: boolean; characterLabel?: string };

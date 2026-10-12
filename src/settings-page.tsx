@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { FileText, FolderOpen, Globe, Monitor, ScanSearch, Search, Shield } from "lucide-react";
+import { FileTextIcon as FileText } from "@phosphor-icons/react/dist/csr/FileText";
+import { FolderOpenIcon as FolderOpen } from "@phosphor-icons/react/dist/csr/FolderOpen";
+import { GlobeIcon as Globe } from "@phosphor-icons/react/dist/csr/Globe";
+import { MonitorIcon as Monitor } from "@phosphor-icons/react/dist/csr/Monitor";
+import { ScanIcon as ScanSearch } from "@phosphor-icons/react/dist/csr/Scan";
+import { MagnifyingGlassIcon as Search } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
+import { ShieldIcon as Shield } from "@phosphor-icons/react/dist/csr/Shield";
 import { Button, DialogNotice, Input, Select, Switch, Textarea, UiProvider } from "@modera/ui";
 import { FieldRow, Form, FormItem, SettingsColumns, SettingsPage, SettingsPanel, SettingsSummary } from "@modera/ui/settings";
 import { frontend, settingsAction, useSettings } from "@modera/plugin-sdk/react";
