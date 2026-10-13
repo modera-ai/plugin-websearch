@@ -1,8 +1,10 @@
-.search-settings-ui { min-height: 100vh; }
-.search-browser-list { display: grid; gap: 8px; margin-top: 16px; }
-.search-browser { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--mu-line); border-radius: 9px; }
+.search-settings-ui { min-height: 100dvh; }
+.search-secondary-grid { margin-top: 28px; }
+.search-browser-list { display: flex; flex-direction: column; }
+.search-browser { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--mu-settings-divider, var(--mu-line)); }
 .search-browser > span { display: grid; gap: 3px; min-width: 0; flex: 1; }
 .search-browser strong, .search-browser small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.search-browser small, .search-log small { color: var(--mu-muted); }
-.search-log { margin-top: 14px; min-width: 0; }
+.search-browser small, .search-log small { color: var(--mu-muted); font-size: 12px; }
+.search-log { padding: 12px 16px; min-width: 0; }
 .search-log pre { overflow: auto; max-height: 320px; white-space: pre-wrap; word-break: break-word; }
+.search-settings-ui.mu-settings-codex .mu-settings-panel-body > .mu-button { margin: 10px 16px; }
