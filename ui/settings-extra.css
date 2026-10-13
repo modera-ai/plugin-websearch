@@ -8,3 +8,5 @@
 .search-log { padding: 12px 16px; min-width: 0; }
 .search-log pre { overflow: auto; max-height: 320px; white-space: pre-wrap; word-break: break-word; }
 .search-settings-ui.mu-settings-codex .mu-settings-panel-body > .mu-button { margin: 10px 16px; }
+
+.search-settings-ui .mu-settings-panel-body > .mu-form + .mu-form { border-top: 1px solid var(--mu-settings-divider, var(--mu-line)); }
