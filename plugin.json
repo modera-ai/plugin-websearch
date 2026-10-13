@@ -3,7 +3,7 @@
   "activationScope": "scoped",
   "id": "modera.websearch",
   "name": "WebSearch",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Search DuckDuckGo/Bing and read public rendered web pages with an isolated system browser.",
   "author": "Modera",
   "category": "web",
